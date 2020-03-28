@@ -9,6 +9,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Input\InputArgument;
 use Benemohamed\Http\Client;
 use Symfony\Component\Console\Style\SymfonyStyle;
+use Symfony\Component\Console\Input\InputOption;
 
 /**
  * Class TargetCommand
@@ -23,6 +24,11 @@ class TargetCommand extends Command
             ->setName('target')
             ->setDescription('Shows the short information target .')
             ->addArgument('url', InputArgument::REQUIRED, 'Pass a website or file list.')
+            ->addOption(
+                'output',
+                'o',
+                InputOption::VALUE_OPTIONAL,
+                'Write to file instead of stdout')
             ->setHelp(
                 <<<EOT
 <info>target  about</info>
