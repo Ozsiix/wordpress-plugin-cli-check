@@ -3,6 +3,7 @@
 
 namespace Benemohamed\Command;
 
+use Benemohamed\Exception\WpException;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -51,7 +52,7 @@ EOT
         if (file_exists($input->getArgument('url'))) {
             Client::GetPlugin($input, $output, 'file', [1], $output);
         } else {
-            Client::GetPlugin($input, $output, 'url', [1], $output);
+            throw new WpException('Please provide target list');
         }
         return 0;
     }

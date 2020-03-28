@@ -103,23 +103,6 @@ class Client
             $output->writeln('');
             $table->setRows($rows);
             $table->render();
-
-
-        } else {
-            try {
-                $random = RandomUserAgent::agent();
-                $client = new CurlHttpClient(['headers' => [
-                    'User-Agent' => $random,
-                ]]);
-                $response = $client->request('GET', $input->getArgument('url'));
-                $statusCode = $response->getStatusCode();
-                $content = $response->getContent();
-                $output->writeln("<info>{$statusCode}</info>");
-            } catch (\Exception $e) {
-                //echo $e->getMessage()."\n";
-                $output->writeln("<error>{$e->getMessage()}</error>");
-            }
-
         }
     }
 }
