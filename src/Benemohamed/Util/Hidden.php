@@ -43,6 +43,11 @@ class Hidden
      */
     public string $folder;
 
+    /**
+     * @var Filesystem
+     */
+    public Filesystem $filesystem;
+
 
     /**
      * Hidden constructor.
@@ -55,12 +60,13 @@ class Hidden
             $this->home = $_SERVER['HOMEPATH'] . '/';
         }
         $this->folder = $this->home . self::FOLDER;
-        //(!file_exists($this->date) ? touch($this->date) : null);
+        $this->date  = $this->folder . '/' . self::QUERY . '-' . date("Y-m-d");
 
-        $filesystem = new Filesystem();
+        $this->filesystem = new Filesystem();
 
         try {
-            $filesystem->mkdir($this->folder, 0777);
+            $this->filesystem->mkdir($this->folder, 0777);
+            $this->filesystem->mkdir($this->date, 0777);
         } catch (IOExceptionInterface $exception) {
             echo "An error occurred while creating your directory at " . $exception->getPath();
         }
