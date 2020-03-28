@@ -19,10 +19,10 @@ class AboutCommand extends Command
     {
         $this
             ->setName('about')
-            ->setDescription('Shows the short information about .')
+            ->setDescription('Shows the short information Cli .')
             ->setHelp(
                 <<<EOT
-<info>php ssss.phar about</info>
+<info>https://github.com/benemohamed/wordpress-plugin-cli-check</info>
 EOT
             );
     }
@@ -34,7 +34,7 @@ EOT
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $output->writeln('<info>About</info><comment> See https://get.org/ for more information.</comment>');
+        $output->writeln('<info>About</info><comment> See https://github.com/benemohamed/wordpress-plugin-cli-check for more information.</comment>');
 
         return 0;
     }
