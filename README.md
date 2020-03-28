@@ -14,7 +14,7 @@ composer global require benemohamed/wordpress-plugin-cli-check
 
 ## How to Use
 ```bash
-$ wp-p-c target [-o|--output [OUTPUT]] [--] <url>
+$ wp-p-c target [-o|--output [OUTPUT]] [--] <url> [<plugin>]
 ```
 
 > Log output one your HOME/.wp-p-c/{query-date(...)}/{good|bad}.csv
