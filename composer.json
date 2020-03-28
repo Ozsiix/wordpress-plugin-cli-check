@@ -7,7 +7,6 @@
     "check",
     "plugin"
   ],
-  "type": "CLI",
   "license": "MIT",
   "homepage": "https://github.com/benemohamed/wordpress-plugin-cli-check",
   "authors": [
@@ -36,5 +35,13 @@
   },
   "bin": [
     "bin/wp-p-c"
-  ]
+  ],
+  "config": {
+    "sort-packages": true
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-1.0": "0.0.x-dev"
+    }
+  }
 }
