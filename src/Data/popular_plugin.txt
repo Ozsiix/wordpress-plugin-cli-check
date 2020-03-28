@@ -1,0 +1,3 @@
+contact-form-7
+contact-form-7-simple-recaptcha
+nextgen-gallery
