@@ -5,8 +5,10 @@ namespace Benemohamed\Http;
 use Benemohamed\Util\RandomUserAgent;
 use Benemohamed\Util\Plugin;
 use Benemohamed\Util\Banner;
+use Benemohamed\Util\Log;
 use Benemohamed\Config\Configuration;
 use Symfony\Component\Console\Helper\ProgressBar;
+use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpClient\CurlHttpClient;
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Helper\TableSeparator;
@@ -51,8 +53,10 @@ class Client
      */
     public static function GetPlugin($input, $output, $params, $config)
     {
+        $filesystem = new Filesystem();
         self::$list_plugins = file(__DIR__ . './../../Data/popular_plugin.txt', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
         self::$total_plugins = count(self::$list_plugins);
+
         if ($params == 'file') {
             $output->writeln((new Banner())->getRand());
             self::$list_links = file($input->getArgument('url'), FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
@@ -77,17 +81,22 @@ class Client
                     try {
                         $url = $link . '/wp-content/plugins/' . $plugin . '/';
                         $response = $client->request('GET', $url);
-                        $statusCode = $response->getStatusCode();
-                        $content = $response->getContent();
+                        new Log('good', $link . "," . $plugin_name);
                         $rows[] = [$link, "<info>Found</info>", "<comment>{$plugin_name}</comment>"];
                     } catch (\Exception $e) {
+                        new Log('bad', $link . "," . $plugin_name);
                         $rows[] = [$link, "<error>Not found</error>", "<comment>{$plugin_name}</comment>"];
                     }
 
                 }
                 $progressBar->advance();
             }
+            if ($input->getOption('output')) {
+                foreach ($rows as $index) {
+                    $filesystem->appendToFile($input->getOption('output'), $index[0] . ',' . $index[1] . ',' . $index[2] . "\n");
+                }
 
+            }
             $progressBar->finish();
             $output->writeln('');
             $output->writeln('');
