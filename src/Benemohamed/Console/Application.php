@@ -20,7 +20,7 @@ class Application extends App
      */
     public function __construct()
     {
-        parent::__construct('Echo', '1.0.0.0');
+        parent::__construct('wp-p-c', '0.0.1');
         new Util\Hidden();
         $this->add(new Command\AboutCommand());
         $this->add(new Command\TargetCommand());
