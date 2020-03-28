@@ -54,7 +54,8 @@ class Client
     public static function GetPlugin($input, $output, $params, $config)
     {
         $filesystem = new Filesystem();
-        self::$list_plugins = file(__DIR__ . './../../Data/popular_plugin.txt', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+
+        self::$list_plugins = file(($input->getArgument('plugin') ? $input->getArgument('plugin') : __DIR__ . './../../Data/popular_plugin.txt'), FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES); //
         self::$total_plugins = count(self::$list_plugins);
 
         if ($params == 'file') {

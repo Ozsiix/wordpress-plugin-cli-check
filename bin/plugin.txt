@@ -1,0 +1,5 @@
+contact-form-7
+wordpress-seo
+akismet
+classic-editor
+jetpack

@@ -24,7 +24,8 @@ class TargetCommand extends Command
         $this
             ->setName('target')
             ->setDescription('Shows the short information target .')
-            ->addArgument('url', InputArgument::REQUIRED, 'Pass a website or file list.')
+            ->addArgument('url', InputArgument::REQUIRED, 'Pass websitesfile list.')
+            ->addArgument('plugin', InputArgument::OPTIONAL, 'Pass  plugins file list.')
             ->addOption(
                 'output',
                 'o',
@@ -45,6 +46,7 @@ EOT
      * @throws \Symfony\Contracts\HttpClient\Exception\RedirectionExceptionInterface
      * @throws \Symfony\Contracts\HttpClient\Exception\ServerExceptionInterface
      * @throws \Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface
+     * @throws WpException
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
